@@ -1,0 +1,55 @@
+class Solution {
+public:
+    string translate(string word){
+        string str = "";
+        string appendStr = "";
+        for(int i = 0; i < word.size(); i++){
+            switch(word[i]){
+                case 'a' : appendStr = ".-"; break;
+                case 'b' : appendStr = "-..."; break;
+                case 'c' : appendStr = "-.-."; break;
+                case 'd' : appendStr = "-.."; break;
+                case 'e' : appendStr = "."; break;
+                case 'f' : appendStr = "..-."; break;
+                case 'g' : appendStr = "--."; break;
+                case 'h' : appendStr = "...."; break;
+                case 'i' : appendStr = "..";break;
+                case 'j' : appendStr = ".---";break;
+                case 'k' : appendStr = "-.-";break;
+                case 'l' : appendStr = ".-..";break;
+                case 'm' : appendStr = "--";break;
+                case 'n' : appendStr = "-.";break;
+                case 'o' : appendStr = "---";break;
+                case 'p' : appendStr = ".--.";break;
+                case 'q' : appendStr = "--.-";break;
+                case 'r' : appendStr = ".-.";break;       
+                case 's' : appendStr = "...";break;
+                case 't' : appendStr = "-";break;
+                case 'u' : appendStr = "..-";break;
+                case 'v' : appendStr = "...-";break;
+                case 'w' : appendStr = ".--";break;
+                case 'x' : appendStr = "-..-";break;
+                case 'y' : appendStr = "-.--";break;
+                case 'z' : appendStr = "--..";break;
+ 
+            }
+            
+            str += appendStr;
+        }
+        return str;
+    }
+    int uniqueMorseRepresentations(vector<string>& words) {
+        vector<string> trans;
+        vector<int> flag(words.size(), 1);
+        for(int i = 0; i < words.size(); i++){
+            trans.push_back(translate(words[i]));
+        }
+        set<string> m;
+        for(int i = 0; i < trans.size() && flag[i] == 1; i++){
+            if(m.find(trans[i]) == m.end()){
+                m.insert(trans[i]);
+            }
+        }
+        return m.size();
+    }
+};
